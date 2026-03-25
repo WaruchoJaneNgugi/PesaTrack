@@ -15,6 +15,7 @@ function startOf(period: Period): number {
   return 0;
 }
 
+
 function Bar({ value, max, color }: { value: number; max: number; color: string }) {
   const pct = max > 0 ? (value / max) * 100 : 0;
   return (
