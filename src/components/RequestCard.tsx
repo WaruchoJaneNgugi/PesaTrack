@@ -63,7 +63,7 @@ export default function RequestCard({ request, isAdmin, isEmployee }: Props) {
 
   return (
     <>
-      <div className="request-card">
+      <div className="request-card" style={isAdmin && request.receiptUrl ? { borderLeft: '3px solid var(--success, #22c55e)' } : undefined}>
         <div className="request-card-header">
           <div>
             <div className="request-amount">KES {request.amount.toLocaleString()}</div>
@@ -98,31 +98,34 @@ export default function RequestCard({ request, isAdmin, isEmployee }: Props) {
           <div className="admin-note">💬 {request.adminNote}</div>
         )}
 
+        {isAdmin && request.receiptUrl && (
+          <a href={request.receiptUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm" style={{ marginTop: 10, display: 'inline-flex' }}>
+            <Receipt size={14} /> View Receipt
+          </a>
+        )}
+
         {isEmployee && request.status === 'approved' && (
-          <div style={{ marginTop: 10 }}>
-            {request.receiptUrl ? (
+          <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              style={{ display: 'none' }}
+              onChange={e => e.target.files?.[0] && uploadReceipt(e.target.files[0])}
+            />
+            {request.receiptUrl && (
               <a href={request.receiptUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
                 <Receipt size={14} /> View Receipt
               </a>
-            ) : (
-              <>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  capture="environment"
-                  style={{ display: 'none' }}
-                  onChange={e => e.target.files?.[0] && uploadReceipt(e.target.files[0])}
-                />
-                <button
-                  className="btn btn-outline btn-sm"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={uploading}
-                >
-                  <Upload size={14} /> {uploading ? 'Uploading...' : 'Upload Receipt'}
-                </button>
-              </>
             )}
+            <button
+              className="btn btn-outline btn-sm"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+            >
+              <Upload size={14} /> {uploading ? 'Uploading...' : request.receiptUrl ? 'Re-upload Receipt' : 'Upload Receipt'}
+            </button>
           </div>
         )}
 
