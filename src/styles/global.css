@@ -213,6 +213,21 @@ body {
 
 .mobile-header-install:hover { opacity: 0.85; }
 
+.mobile-header-theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-bg);
+  color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  width: 36px; height: 36px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.mobile-header-theme:hover { opacity: 0.8; }
+
 .mobile-header-signout {
   display: flex;
   align-items: center;
