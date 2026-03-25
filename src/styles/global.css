@@ -195,6 +195,24 @@ body {
   letter-spacing: -0.5px;
 }
 
+.mobile-header-install {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 36px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.mobile-header-install:hover { opacity: 0.85; }
+
 .mobile-header-signout {
   display: flex;
   align-items: center;
