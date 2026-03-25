@@ -29,4 +29,5 @@ export type Page =
   | 'all-requests'
   | 'employees'
   | 'add-user'
-  | 'audit';
+  | 'audit'
+  | 'profile';

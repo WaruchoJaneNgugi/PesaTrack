@@ -13,6 +13,9 @@ import Employees from './pages/admin/Employees';
 import AddUser from './pages/admin/AddUser';
 import Audit from './pages/admin/Audit';
 
+// Shared pages
+import Profile from './pages/Profile';
+
 // Auth pages
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -20,6 +23,7 @@ import { useAuth } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import Sidebar from './components/Sidebar';
 import BottomNav from './components/BottomNav';
+import MobileHeader from './components/MobileHeader';
 
 export default function App() {
   const { user } = useAuth();
@@ -39,6 +43,7 @@ export default function App() {
   }
 
   const renderPage = () => {
+    if (page === 'profile') return <Profile />;
     if (user.role === 'employee') {
       if (page === 'dashboard') return <EmployeeDashboard onNavigate={setPage} />;
       if (page === 'new-request') return <NewRequest onNavigate={setPage} />;
@@ -58,6 +63,7 @@ export default function App() {
       <ToastContainer />
       <div className="app-layout">
         <Sidebar page={page} onNavigate={setPage} />
+        <MobileHeader />
         <main className="main-content">
           {renderPage()}
         </main>

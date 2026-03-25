@@ -1,4 +1,4 @@
-import { LayoutDashboard, PlusCircle, ClipboardList, Users, LogOut, Moon, Sun, BarChart2 } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ClipboardList, Users, BarChart2, UserCircle, Moon, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import type { Page } from '../types';
@@ -12,6 +12,7 @@ const employeeNav = [
   { id: 'dashboard' as Page, label: 'Dashboard', icon: LayoutDashboard },
   { id: 'new-request' as Page, label: 'New Request', icon: PlusCircle },
   { id: 'my-requests' as Page, label: 'My Requests', icon: ClipboardList },
+  { id: 'profile' as Page, label: 'Profile', icon: UserCircle },
 ];
 
 const adminNav = [
@@ -19,10 +20,11 @@ const adminNav = [
   { id: 'all-requests' as Page, label: 'All Requests', icon: ClipboardList },
   { id: 'employees' as Page, label: 'Employees', icon: Users },
   { id: 'audit' as Page, label: 'Audit', icon: BarChart2 },
+  { id: 'profile' as Page, label: 'Profile', icon: UserCircle },
 ];
 
 export default function Sidebar({ page, onNavigate }: Props) {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { dark, toggle } = useTheme();
   const nav = user?.role === 'admin' ? adminNav : employeeNav;
   const initials = user?.name.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
@@ -57,10 +59,6 @@ export default function Sidebar({ page, onNavigate }: Props) {
           <div className={`toggle-track ${dark ? 'on' : ''}`}>
             <div className="toggle-thumb" />
           </div>
-        </button>
-        <button className="nav-item" onClick={logout} style={{ color: 'var(--danger)' }}>
-          <LogOut size={18} />
-          Logout
         </button>
       </div>
     </aside>

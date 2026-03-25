@@ -1,4 +1,4 @@
-import { LayoutDashboard, PlusCircle, ClipboardList, Users } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ClipboardList, Users, BarChart2, UserCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import type { Page } from '../types';
 
@@ -11,12 +11,15 @@ const employeeNav = [
   { id: 'dashboard' as Page, label: 'Home', icon: LayoutDashboard },
   { id: 'new-request' as Page, label: 'Request', icon: PlusCircle },
   { id: 'my-requests' as Page, label: 'My Requests', icon: ClipboardList },
+  { id: 'profile' as Page, label: 'Profile', icon: UserCircle },
 ];
 
 const adminNav = [
   { id: 'dashboard' as Page, label: 'Home', icon: LayoutDashboard },
   { id: 'all-requests' as Page, label: 'Requests', icon: ClipboardList },
   { id: 'employees' as Page, label: 'Employees', icon: Users },
+  { id: 'audit' as Page, label: 'Audit', icon: BarChart2 },
+  { id: 'profile' as Page, label: 'Profile', icon: UserCircle },
 ];
 
 export default function BottomNav({ page, onNavigate }: Props) {
