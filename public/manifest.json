@@ -1,0 +1,17 @@
+{
+  "name": "PesaTrack",
+  "short_name": "PesaTrack",
+  "description": "Request Management System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F3FF",
+  "theme_color": "#7C3AED",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
