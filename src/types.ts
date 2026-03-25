@@ -28,4 +28,5 @@ export type Page =
   | 'my-requests'
   | 'all-requests'
   | 'employees'
-  | 'add-user';
+  | 'add-user'
+  | 'audit';

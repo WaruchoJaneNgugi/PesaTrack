@@ -1,4 +1,4 @@
-import { LayoutDashboard, PlusCircle, ClipboardList, Users, LogOut, Moon, Sun } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ClipboardList, Users, LogOut, Moon, Sun, BarChart2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import type { Page } from '../types';
@@ -18,6 +18,7 @@ const adminNav = [
   { id: 'dashboard' as Page, label: 'Dashboard', icon: LayoutDashboard },
   { id: 'all-requests' as Page, label: 'All Requests', icon: ClipboardList },
   { id: 'employees' as Page, label: 'Employees', icon: Users },
+  { id: 'audit' as Page, label: 'Audit', icon: BarChart2 },
 ];
 
 export default function Sidebar({ page, onNavigate }: Props) {

@@ -11,6 +11,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import AllRequests from './pages/admin/AllRequests';
 import Employees from './pages/admin/Employees';
 import AddUser from './pages/admin/AddUser';
+import Audit from './pages/admin/Audit';
 
 // Auth pages
 import Login from './pages/Login';
@@ -47,6 +48,7 @@ export default function App() {
       if (page === 'all-requests') return <AllRequests />;
       if (page === 'employees') return <Employees onNavigate={setPage} />;
       if (page === 'add-user') return <AddUser onNavigate={setPage} />;
+      if (page === 'audit') return <Audit />;
     }
     return null;
   };
