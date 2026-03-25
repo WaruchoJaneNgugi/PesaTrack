@@ -8,14 +8,16 @@ import { Send } from 'lucide-react';
 
 interface Props { onNavigate: (p: Page) => void; }
 
-const categories = ['supplies', 'travel', 'meals', 'other'] as const;
+const categories = [
+  'supplies', 'travel', 'meals', 'fuel', 'accommodation',
+  'equipment', 'utilities', 'maintenance', 'entertainment', 'other'
+] as const;
 
 export default function NewRequest({ onNavigate }: Props) {
   const { user } = useAuth();
   const { toast } = useToast();
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState<typeof categories[number]>('supplies');
-  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -24,7 +26,6 @@ export default function NewRequest({ onNavigate }: Props) {
     setError('');
     const amt = parseFloat(amount);
     if (!amt || amt <= 0) { setError('Enter a valid amount'); return; }
-    if (!description.trim()) { setError('Add a description'); return; }
     setLoading(true);
     try {
       await addDoc(collection(db, 'requests'), {
@@ -33,7 +34,6 @@ export default function NewRequest({ onNavigate }: Props) {
         employeePhone: user!.phone,
         amount: amt,
         category,
-        description: description.trim(),
         status: 'pending',
         adminNote: null,
         createdAt: Date.now(),
@@ -73,15 +73,6 @@ export default function NewRequest({ onNavigate }: Props) {
                 <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
               ))}
             </select>
-          </div>
-          <div className="form-group">
-            <label className="form-label">Description</label>
-            <textarea
-              className="form-textarea"
-              placeholder="Describe what the money is for..."
-              value={description}
-              onChange={e => setDescription(e.target.value)}
-            />
           </div>
           {error && <p className="error-text" style={{ marginBottom: 12 }}>{error}</p>}
           <div style={{ display: 'flex', gap: 8 }}>

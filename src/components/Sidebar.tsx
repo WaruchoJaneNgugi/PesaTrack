@@ -1,5 +1,6 @@
-import { LayoutDashboard, PlusCircle, ClipboardList, Users, LogOut } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ClipboardList, Users, LogOut, Moon, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import type { Page } from '../types';
 
 interface Props {
@@ -21,20 +22,21 @@ const adminNav = [
 
 export default function Sidebar({ page, onNavigate }: Props) {
   const { user, logout } = useAuth();
+  const { dark, toggle } = useTheme();
   const nav = user?.role === 'admin' ? adminNav : employeeNav;
   const initials = user?.name.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
 
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <h1>🌍 PesaTrack</h1>
+        <h1>💸 PesaTrack</h1>
         <p>Request Management</p>
       </div>
       <div className="sidebar-user">
         <div className="avatar">{initials}</div>
         <div className="sidebar-user-info">
           <p>{user?.name}</p>
-          <span>{user?.role === 'admin' ? 'Administrator' : 'Employee'}</span>
+          <span>{user?.role === 'admin' ? '⚡ Administrator' : '👤 Employee'}</span>
         </div>
       </div>
       <nav className="sidebar-nav">
@@ -46,7 +48,16 @@ export default function Sidebar({ page, onNavigate }: Props) {
         ))}
       </nav>
       <div className="sidebar-logout">
-        <button className="nav-item" onClick={logout} style={{ color: '#C62828' }}>
+        <button className="theme-toggle" onClick={toggle}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {dark ? <Sun size={15} /> : <Moon size={15} />}
+            {dark ? 'Light Mode' : 'Dark Mode'}
+          </span>
+          <div className={`toggle-track ${dark ? 'on' : ''}`}>
+            <div className="toggle-thumb" />
+          </div>
+        </button>
+        <button className="nav-item" onClick={logout} style={{ color: 'var(--danger)' }}>
           <LogOut size={18} />
           Logout
         </button>

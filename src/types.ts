@@ -13,8 +13,8 @@ export interface Request {
   employeeName: string;
   employeePhone: string;
   amount: number;
-  category: 'supplies' | 'travel' | 'meals' | 'other';
-  description: string;
+  category: 'supplies' | 'travel' | 'meals' | 'fuel' | 'accommodation' | 'equipment' | 'utilities' | 'maintenance' | 'entertainment' | 'other';
+  description?: string;
   status: 'pending' | 'approved' | 'rejected';
   adminNote?: string;
   receiptUrl?: string;
@@ -27,4 +27,5 @@ export type Page =
   | 'new-request'
   | 'my-requests'
   | 'all-requests'
-  | 'employees';
+  | 'employees'
+  | 'add-user';

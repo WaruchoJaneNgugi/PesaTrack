@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import type { Request } from '../types';
 
@@ -10,15 +10,16 @@ export function useRequests(employeeId?: string) {
   useEffect(() => {
     const col = collection(db, 'requests');
     const q = employeeId
-      ? query(col, where('employeeId', '==', employeeId), orderBy('createdAt', 'desc'))
-      : query(col, orderBy('createdAt', 'desc'));
+      ? query(col, where('employeeId', '==', employeeId))
+      : query(col);
 
-    const unsub = onSnapshot(q, (snap) => {
-      setRequests(snap.docs.map(d => ({ id: d.id, ...d.data() } as Request)));
+    return onSnapshot(q, (snap) => {
+      const sorted = snap.docs
+        .map(d => ({ id: d.id, ...d.data() } as Request))
+        .sort((a, b) => b.createdAt - a.createdAt);
+      setRequests(sorted);
       setLoading(false);
     });
-
-    return unsub;
   }, [employeeId]);
 
   return { requests, loading };

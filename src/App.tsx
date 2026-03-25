@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Page } from './types';
 
-
 // Employee pages
 import EmployeeDashboard from './pages/employee/Dashboard';
 import NewRequest from './pages/employee/NewRequest';
@@ -11,14 +10,15 @@ import MyRequests from './pages/employee/MyRequests';
 import AdminDashboard from './pages/admin/Dashboard';
 import AllRequests from './pages/admin/AllRequests';
 import Employees from './pages/admin/Employees';
+import AddUser from './pages/admin/AddUser';
 
 // Auth pages
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import {useAuth} from "./context/AuthContext";
-import {ToastContainer} from "react-toastify";
-import Sidebar from "./components/Sidebar";
-import BottomNav from "./components/BottomNav";
+import { useAuth } from './context/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import Sidebar from './components/Sidebar';
+import BottomNav from './components/BottomNav';
 
 export default function App() {
   const { user } = useAuth();
@@ -45,7 +45,8 @@ export default function App() {
     } else {
       if (page === 'dashboard') return <AdminDashboard onNavigate={setPage} />;
       if (page === 'all-requests') return <AllRequests />;
-      if (page === 'employees') return <Employees />;
+      if (page === 'employees') return <Employees onNavigate={setPage} />;
+      if (page === 'add-user') return <AddUser onNavigate={setPage} />;
     }
     return null;
   };
