@@ -8,7 +8,7 @@ export default function MobileHeader() {
 
   return (
     <header className="mobile-header">
-      <span className="mobile-header-logo">💸 NgommaPay</span>
+      <span className="mobile-header-logo">NgommaPay</span>
       <div style={{ display: 'flex', gap: 8 }}>
         <button className="mobile-header-theme" onClick={toggle} title="Toggle theme">
           {dark ? <Sun size={20} /> : <Moon size={20} />}
