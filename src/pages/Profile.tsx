@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, KeyRound, LogOut, Save } from 'lucide-react';
+import { User, KeyRound, LogOut, Save, Zap } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -49,8 +49,8 @@ export default function Profile() {
           <div className="avatar" style={{ width: 52, height: 52, fontSize: '1.1rem' }}>{initials}</div>
           <div>
             <p style={{ fontWeight: 700 }}>{user?.name}</p>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-              {user?.role === 'admin' ? '⚡ Administrator' : '👤 Employee'}
+            <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4 }}>
+              {user?.role === 'admin' ? <><Zap size={13} /> Administrator</> : <><User size={13} /> Employee</>}
             </span>
           </div>
         </div>

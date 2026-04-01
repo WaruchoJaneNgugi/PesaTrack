@@ -83,7 +83,7 @@ export default function Audit() {
 
   return (
     <div>
-      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className="page-header audit-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h2>Audit Report</h2>
           <p>Expense analysis and spending breakdown</p>
@@ -133,7 +133,7 @@ export default function Audit() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="grid-2col">
         {/* Weekly spend chart */}
         <div className="card">
           <p className="section-title">Weekly Spend (Last 8 Weeks)</p>
@@ -180,7 +180,7 @@ export default function Audit() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div className="grid-2col" style={{ marginBottom: 0 }}>
         {/* By category */}
         <div className="card">
           <p className="section-title">Spend by Category</p>

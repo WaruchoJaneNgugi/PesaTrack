@@ -50,7 +50,7 @@ export default function Signup({ onLogin }: Props) {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-logo">
-          <h1>🌍 PesaTrack</h1>
+          <h1>🌍 NgommaPay</h1>
           <p>Request Management System</p>
         </div>
         <div className="step-indicator">

@@ -1,4 +1,4 @@
-import { LayoutDashboard, PlusCircle, ClipboardList, Users, BarChart2, UserCircle, Moon, Sun } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ClipboardList, Users, BarChart2, UserCircle, Moon, Sun, LogOut, Zap, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import type { Page } from '../types';
@@ -24,7 +24,7 @@ const adminNav = [
 ];
 
 export default function Sidebar({ page, onNavigate }: Props) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { dark, toggle } = useTheme();
   const nav = user?.role === 'admin' ? adminNav : employeeNav;
   const initials = user?.name.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
@@ -32,14 +32,14 @@ export default function Sidebar({ page, onNavigate }: Props) {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <h1>💸 PesaTrack</h1>
+        <h1> NgommaPay</h1>
         <p>Request Management</p>
       </div>
       <div className="sidebar-user">
         <div className="avatar">{initials}</div>
         <div className="sidebar-user-info">
           <p>{user?.name}</p>
-          <span>{user?.role === 'admin' ? '⚡ Administrator' : '👤 Employee'}</span>
+          <span>{user?.role === 'admin' ? <><Zap size={14} /> Administrator</> : <><User size={14} /> Employee</>}</span>
         </div>
       </div>
       <nav className="sidebar-nav">
@@ -59,6 +59,9 @@ export default function Sidebar({ page, onNavigate }: Props) {
           <div className={`toggle-track ${dark ? 'on' : ''}`}>
             <div className="toggle-thumb" />
           </div>
+        </button>
+        <button className="nav-item" onClick={logout} style={{ color: 'var(--danger)', marginTop: 4 }}>
+          <LogOut size={18} /> Sign Out
         </button>
       </div>
     </aside>
